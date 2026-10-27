@@ -1,0 +1,226 @@
+{
+  "modelo": "bertimbau_s42",
+  "info": {
+    "familia": "3. Transformer ajustado",
+    "descricao": "BERTimbau Base com ajuste fino",
+    "grupo": "bertimbau",
+    "semente": 42,
+    "modelo_hf": "neuralmind/bert-base-portuguese-cased",
+    "versao_corpus": "normalizado",
+    "preprocessamento": "minimo",
+    "max_tokens": 512,
+    "fracao_truncada": {
+      "treino": 0.05615079365079365,
+      "validacao": 0.041666666666666664,
+      "teste": 0.04351851851851852
+    },
+    "hiperparametros": {
+      "taxa": 2e-05,
+      "epocas": 4,
+      "lote_efetivo": 16,
+      "weight_decay": 0.01,
+      "aquecimento": 0.1,
+      "bf16": true
+    },
+    "melhor_checkpoint": "C:\\Users\\202401005185\\Documents\\pln_atividade\\resultados\\modelos\\checkpoints\\bertimbau_s42\\checkpoint-1260",
+    "melhor_acuracia_validacao": 0.9962962962962963,
+    "tempo_treino_s": 370.9,
+    "gpu": "NVIDIA RTX 2000 Ada Generation",
+    "historico": [
+      {
+        "loss": 1.301826171875,
+        "epoch": 0.15873015873015872
+      },
+      {
+        "loss": 0.5875070190429688,
+        "epoch": 0.31746031746031744
+      },
+      {
+        "loss": 0.2948518371582031,
+        "epoch": 0.47619047619047616
+      },
+      {
+        "loss": 0.1576184844970703,
+        "epoch": 0.6349206349206349
+      },
+      {
+        "loss": 0.20288639068603515,
+        "epoch": 0.7936507936507936
+      },
+      {
+        "loss": 0.20115066528320313,
+        "epoch": 0.9523809523809523
+      },
+      {
+        "eval_loss": 0.08283499628305435,
+        "eval_accuracy": 0.9805555555555555,
+        "epoch": 1.0
+      },
+      {
+        "loss": 0.050179967880249025,
+        "epoch": 1.1111111111111112
+      },
+      {
+        "loss": 0.02717245101928711,
+        "epoch": 1.2698412698412698
+      },
+      {
+        "loss": 0.058771762847900394,
+        "epoch": 1.4285714285714286
+      },
+      {
+        "loss": 0.10101703643798828,
+        "epoch": 1.5873015873015874
+      },
+      {
+        "loss": 0.06034461975097656,
+        "epoch": 1.746031746031746
+      },
+      {
+        "loss": 0.005311059951782227,
+        "epoch": 1.9047619047619047
+      },
+      {
+        "eval_loss": 0.031693145632743835,
+        "eval_accuracy": 0.9925925925925926,
+        "epoch": 2.0
+      },
+      {
+        "loss": 0.0711900520324707,
+        "epoch": 2.0634920634920633
+      },
+      {
+        "loss": 0.004967602491378784,
+        "epoch": 2.2222222222222223
+      },
+      {
+        "loss": 0.0008534085750579834,
+        "epoch": 2.380952380952381
+      },
+      {
+        "loss": 0.023974385261535645,
+        "epoch": 2.5396825396825395
+      },
+      {
+        "loss": 0.006304361820220947,
+        "epoch": 2.6984126984126986
+      },
+      {
+        "loss": 0.0003975987434387207,
+        "epoch": 2.857142857142857
+      },
+      {
+        "eval_loss": 0.023423943668603897,
+        "eval_accuracy": 0.9935185185185185,
+        "epoch": 3.0
+      },
+      {
+        "loss": 0.00046998083591461183,
+        "epoch": 3.015873015873016
+      },
+      {
+        "loss": 0.0013403511047363282,
+        "epoch": 3.1746031746031744
+      },
+      {
+        "loss": 0.0003029417991638184,
+        "epoch": 3.3333333333333335
+      },
+      {
+        "loss": 0.004842813611030578,
+        "epoch": 3.492063492063492
+      },
+      {
+        "loss": 0.00026726186275482177,
+        "epoch": 3.6507936507936507
+      },
+      {
+        "loss": 0.00026594340801239013,
+        "epoch": 3.8095238095238093
+      },
+      {
+        "loss": 0.02173732042312622,
+        "epoch": 3.9682539682539684
+      },
+      {
+        "eval_loss": 0.021071799099445343,
+        "eval_accuracy": 0.9962962962962963,
+        "epoch": 4.0
+      },
+      {
+        "epoch": 4.0
+      }
+    ],
+    "tempo_inferencia_validacao_s": 6.99,
+    "atualizado_em": "2026-10-27 11:01:26",
+    "tempo_inferencia_teste_s": 6.24
+  },
+  "validacao": {
+    "n": 1080,
+    "acuracia": 0.996296,
+    "precisao_fake": 0.998141,
+    "revocacao_fake": 0.994444,
+    "f1_fake": 0.996289,
+    "f1_macro": 0.996296,
+    "mcc": 0.992599,
+    "matriz_confusao": [
+      [
+        539,
+        1
+      ],
+      [
+        3,
+        537
+      ]
+    ],
+    "roc_auc": 0.99977,
+    "ic95": {
+      "acuracia": [
+        0.992593,
+        0.999074
+      ],
+      "f1_fake": [
+        0.992551,
+        0.999075
+      ],
+      "f1_macro": [
+        0.992592,
+        0.999074
+      ]
+    }
+  },
+  "teste": {
+    "n": 1080,
+    "acuracia": 0.996296,
+    "precisao_fake": 0.998141,
+    "revocacao_fake": 0.994444,
+    "f1_fake": 0.996289,
+    "f1_macro": 0.996296,
+    "mcc": 0.992599,
+    "matriz_confusao": [
+      [
+        539,
+        1
+      ],
+      [
+        3,
+        537
+      ]
+    ],
+    "roc_auc": 0.999906,
+    "ic95": {
+      "acuracia": [
+        0.992593,
+        1.0
+      ],
+      "f1_fake": [
+        0.992551,
+        1.0
+      ],
+      "f1_macro": [
+        0.992592,
+        1.0
+      ]
+    }
+  }
+}

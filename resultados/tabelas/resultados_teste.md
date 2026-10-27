@@ -1,0 +1,27 @@
+Precisão, revocação e F1 referem-se à classe *falsa*. Valores em %.
+
+**0. Viés de tamanho**
+
+| Modelo                                                 | Acurácia   | IC 95%       | Precisão   | Revocação   | F1   | F1 macro   |   ROC-AUC |
+|:-------------------------------------------------------|:-----------|:-------------|:-----------|:------------|:-----|:-----------|----------:|
+| TF-IDF (1-2) + SVM linear nos textos completos         | 97,1       | [96,0; 98,1] | 98,1       | 96,1        | 97,1 | 97,1       |     0,997 |
+| RegLog só com o tamanho do texto (textos completos)    | 94,2       | [92,7; 95,6] | 93,3       | 95,2        | 94,2 | 94,2       |     0,981 |
+| RegLog só com o tamanho do texto (textos normalizados) | 56,4       | [53,3; 59,2] | 56,7       | 54,3        | 55,4 | 56,4       |     0,598 |
+
+**1. Clássicos**
+
+| Modelo                                 | Acurácia   | IC 95%       | Precisão   | Revocação   | F1   | F1 macro   |   ROC-AUC |
+|:---------------------------------------|:-----------|:-------------|:-----------|:------------|:-----|:-----------|----------:|
+| TF-IDF (1-2) + SVM linear              | 91,7       | [90,0; 93,2] | 91,7       | 91,7        | 91,7 | 91,7       |     0,972 |
+| TF-IDF (1-2) + Regressão Logística     | 91,4       | [89,8; 93,0] | 90,9       | 92,0        | 91,4 | 91,4       |     0,973 |
+| TF-IDF (1-2) + Naive Bayes Multinomial | 88,4       | [86,7; 90,2] | 90,1       | 86,3        | 88,2 | 88,4       |     0,950 |
+
+**1. Clássicos: ablação**
+
+| Modelo                                                       | Acurácia   | IC 95%       | Precisão   | Revocação   | F1   | F1 macro   |   ROC-AUC |
+|:-------------------------------------------------------------|:-----------|:-------------|:-----------|:------------|:-----|:-----------|----------:|
+| TF-IDF de n-gramas de caracteres (2-5) + SVM, limpeza mínima | 94,6       | [93,2; 95,9] | 96,2       | 93,0        | 94,5 | 94,6       |     0,987 |
+| TF-IDF (1-2) + SVM, mantendo stopwords                       | 91,9       | [90,2; 93,4] | 91,9       | 91,9        | 91,9 | 91,9       |     0,975 |
+| TF-IDF (1) + SVM, só unigramas                               | 91,0       | [89,4; 92,7] | 91,1       | 90,9        | 91,0 | 91,0       |     0,968 |
+| TF-IDF (1-2) + SVM, com radicalização RSLP                   | 90,1       | [88,4; 91,8] | 90,2       | 90,0        | 90,1 | 90,1       |     0,966 |
+| TF-IDF (1-2) + SVM, com lematização (spaCy)                  | 89,7       | [87,9; 91,4] | 89,5       | 90,0        | 89,8 | 89,7       |     0,963 |

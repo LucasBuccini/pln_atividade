@@ -1,3 +1,64 @@
+# Detecção de notícias falsas em português no FAKE.BR
+
+Trabalho de PLN: comparação entre modelos estatísticos, embeddings congelados, BERTimbau com ajuste fino e LLM
+(zero-shot e few-shot) no FAKE.BR-Corpus, com protocolo de avaliação único. O repositório tem duas partes:
+
+| Pasta | O que é |
+|---|---|
+| [fakebr/](fakebr/) | Experimentos do artigo. Cada módulo é uma etapa e roda pela linha de comando. |
+| [pln_prep/](pln_prep/) | Biblioteca genérica de pré-processamento usada pelos experimentos (documentada [abaixo](#pln_prep--pré-processamento-padronizado-para-pln)). |
+| [artigo/](artigo/) | Rascunho do artigo ([artigo.md](artigo/artigo.md)) e referências ([referencias.bib](artigo/referencias.bib)). |
+| [resultados/](resultados/) | Métricas (JSON), predições por notícia (CSV), tabelas (Markdown/LaTeX) e figuras (PDF/PNG). |
+| [dados/particoes.json](dados/particoes.json) | Partição fixa treino/validação/teste por pares (versionada). |
+
+## Como reproduzir
+
+```bash
+python -m venv .venv && .venv\Scripts\activate
+pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128   # GPU (exp. 2-4)
+pip install -r requirements-experimentos.txt && pip install -e .
+python -m spacy download pt_core_news_sm
+python -c "import nltk; nltk.download('stopwords'); nltk.download('rslp')"
+
+python -m fakebr.dados          # baixa o corpus (git clone) e confere as partições
+python -m fakebr.exploracao     # Seção 3: estatísticas do corpus e viés de tamanho
+python -m fakebr.classicos      # Exp. 0 e 1: tamanho, TF-IDF + NB/SVM/RegLog e ablações   (CPU, ~3 min)
+python -m fakebr.embeddings     # Exp. 2: BERTimbau e E5 congelados + RegLog                (GPU, ~5 min)
+python -m fakebr.bertimbau      # Exp. 3: ajuste fino, 3 sementes                            (GPU)
+python -m fakebr.llm            # Exp. 4: Qwen2.5-7B-Instruct 4 bits, zero e few-shot        (GPU)
+python -m fakebr.relatorio      # Seções 5 e 6: tabelas, McNemar, figuras e análise de erros
+python -m pytest tests          # testes da biblioteca e dos experimentos
+```
+
+Cada comando aceita `--help`. Os experimentos clássicos podem ser rodados um a um
+(`python -m fakebr.classicos --listar`).
+
+## Protocolo, em resumo
+
+- **Corpus**: versão `size_normalized_texts` (o tamanho do texto sozinho dá 94% de acurácia nos textos completos).
+- **Partição**: 70/15/15 sorteada por **par** (falsa e verdadeira do mesmo assunto ficam juntas): 5.040/1.080/1.080.
+- **Seleção de hiperparâmetros**: GridSearchCV com GroupKFold(5) por par no treino; a validação escolhe o ponto de
+  parada do BERTimbau e o limiar do LLM; o teste é usado uma vez.
+- **Avaliação** ([fakebr/avaliacao.py](fakebr/avaliacao.py)): acurácia, P/R/F1 da classe falsa, F1 macro, MCC,
+  ROC-AUC; IC 95% por bootstrap reamostrando pares; McNemar exato com correção de Holm.
+- **Saída**: todo experimento passa por `avaliacao.registrar`, que grava `resultados/metricas/<modelo>.json` e
+  `resultados/predicoes/<modelo>_<parte>.csv` no mesmo formato.
+
+| Módulo | Seção do artigo | Conteúdo |
+|---|---|---|
+| [config.py](fakebr/config.py) | – | caminhos, semente, proporções, classe positiva |
+| [dados.py](fakebr/dados.py) | 3, 4.1 | download, metadados (categoria, fonte), partições por par |
+| [exploracao.py](fakebr/exploracao.py) | 3 | tamanho por classe, categorias, fontes, Figura 1 |
+| [classicos.py](fakebr/classicos.py) | 4.3, 5 | experimentos declarativos (pré-processamento + vetorizador + classificador + grade) |
+| [embeddings.py](fakebr/embeddings.py) | 4.3, 5 | codificadores congelados + RegLog |
+| [bertimbau.py](fakebr/bertimbau.py) | 4.3, 5 | ajuste fino com `transformers.Trainer` |
+| [llm.py](fakebr/llm.py) | 4.3, 5 | prompt, few-shot, escore por log-probabilidade, calibração do limiar |
+| [avaliacao.py](fakebr/avaliacao.py) | 4.4 | métricas, bootstrap, McNemar, registro |
+| [relatorio.py](fakebr/relatorio.py) | 5, 6 | tabelas, testes pareados, figuras, erros por categoria/fonte/tamanho |
+| [estilo.py](fakebr/estilo.py) | – | estilo único das figuras |
+
+---
+
 # pln_prep — pré-processamento padronizado para PLN
 
 Biblioteca em Python, orientada a objetos, para carregar **qualquer dataset de texto** num formato único e aplicar

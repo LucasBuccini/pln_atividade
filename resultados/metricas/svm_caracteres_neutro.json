@@ -1,0 +1,87 @@
+{
+  "modelo": "svm_caracteres_neutro",
+  "info": {
+    "familia": "1. Clássicos: ablação",
+    "descricao": "TF-IDF de n-gramas de caracteres (2-5) + SVM, artefatos neutralizados",
+    "versao_corpus": "normalizado",
+    "preprocessamento": "neutro",
+    "melhores_hiperparametros": {
+      "linearsvc__C": 1
+    },
+    "cv_acuracia_media": 0.947222,
+    "cv_acuracia_dp": 0.006349,
+    "tempo_busca_s": 30.53,
+    "tempo_inferencia_teste_s": 0.93,
+    "modelo": "Pipeline(steps=[('tfidfvectorizer',\n                 TfidfVectorizer(analyzer='char_wb', lowercase=False,\n                                 max_df=0.95, min_df=3, ngram_range=(2, 5),\n                                 sublinear_tf=True)),\n                ('linearsvc', LinearSVC(C=1))])",
+    "n_atributos": 98317,
+    "atualizado_em": "2026-10-27 11:11:11"
+  },
+  "validacao": {
+    "n": 1080,
+    "acuracia": 0.955556,
+    "precisao_fake": 0.971264,
+    "revocacao_fake": 0.938889,
+    "f1_fake": 0.954802,
+    "f1_macro": 0.955543,
+    "mcc": 0.911618,
+    "matriz_confusao": [
+      [
+        525,
+        15
+      ],
+      [
+        33,
+        507
+      ]
+    ],
+    "roc_auc": 0.992558,
+    "ic95": {
+      "acuracia": [
+        0.942593,
+        0.967593
+      ],
+      "f1_fake": [
+        0.941393,
+        0.967076
+      ],
+      "f1_macro": [
+        0.942564,
+        0.967585
+      ]
+    }
+  },
+  "teste": {
+    "n": 1080,
+    "acuracia": 0.938889,
+    "precisao_fake": 0.95057,
+    "revocacao_fake": 0.925926,
+    "f1_fake": 0.938086,
+    "f1_macro": 0.938879,
+    "mcc": 0.878073,
+    "matriz_confusao": [
+      [
+        514,
+        26
+      ],
+      [
+        40,
+        500
+      ]
+    ],
+    "roc_auc": 0.985182,
+    "ic95": {
+      "acuracia": [
+        0.924074,
+        0.952778
+      ],
+      "f1_fake": [
+        0.922787,
+        0.952294
+      ],
+      "f1_macro": [
+        0.924048,
+        0.952773
+      ]
+    }
+  }
+}

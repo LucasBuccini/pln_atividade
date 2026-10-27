@@ -1,0 +1,84 @@
+{
+  "modelo": "formatacao",
+  "info": {
+    "familia": "0. Atalhos",
+    "descricao": "RegLog só com 4 marcas de formatação (pontuação final, aspas, '. .')",
+    "versao_corpus": "normalizado",
+    "preprocessamento": "minimo",
+    "melhores_hiperparametros": {},
+    "cv_acuracia_media": 0.830556,
+    "cv_acuracia_dp": 0.014559,
+    "tempo_busca_s": 3.04,
+    "tempo_inferencia_teste_s": 0.01,
+    "modelo": "Pipeline(steps=[('functiontransformer',\n                 FunctionTransformer(func=<function _atributos_de_formatacao at 0x000001FB40CB36A0>)),\n                ('logisticregression', LogisticRegression())])",
+    "atualizado_em": "2026-10-27 11:04:37"
+  },
+  "validacao": {
+    "n": 1080,
+    "acuracia": 0.837963,
+    "precisao_fake": 0.874743,
+    "revocacao_fake": 0.788889,
+    "f1_fake": 0.829601,
+    "f1_macro": 0.837572,
+    "mcc": 0.679205,
+    "matriz_confusao": [
+      [
+        479,
+        61
+      ],
+      [
+        114,
+        426
+      ]
+    ],
+    "roc_auc": 0.912876,
+    "ic95": {
+      "acuracia": [
+        0.814815,
+        0.861111
+      ],
+      "f1_fake": [
+        0.80394,
+        0.854933
+      ],
+      "f1_macro": [
+        0.814232,
+        0.860789
+      ]
+    }
+  },
+  "teste": {
+    "n": 1080,
+    "acuracia": 0.830556,
+    "precisao_fake": 0.902935,
+    "revocacao_fake": 0.740741,
+    "f1_fake": 0.813835,
+    "f1_macro": 0.829178,
+    "mcc": 0.672042,
+    "matriz_confusao": [
+      [
+        497,
+        43
+      ],
+      [
+        140,
+        400
+      ]
+    ],
+    "roc_auc": 0.90881,
+    "ic95": {
+      "acuracia": [
+        0.806481,
+        0.852778
+      ],
+      "f1_fake": [
+        0.784679,
+        0.839482
+      ],
+      "f1_macro": [
+        0.80434,
+        0.851432
+      ]
+    }
+  }
+}

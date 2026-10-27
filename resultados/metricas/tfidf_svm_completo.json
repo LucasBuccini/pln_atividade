@@ -1,0 +1,87 @@
+{
+  "modelo": "tfidf_svm_completo",
+  "info": {
+    "familia": "0. Atalhos",
+    "descricao": "TF-IDF (1-2) + SVM linear nos textos completos",
+    "versao_corpus": "completo",
+    "preprocessamento": "sem_stopwords",
+    "melhores_hiperparametros": {
+      "linearsvc__C": 3
+    },
+    "cv_acuracia_media": 0.97263,
+    "cv_acuracia_dp": 0.005971,
+    "tempo_busca_s": 21.99,
+    "tempo_inferencia_teste_s": 0.28,
+    "modelo": "Pipeline(steps=[('tfidfvectorizer',\n                 TfidfVectorizer(lowercase=False, max_df=0.95, min_df=2,\n                                 ngram_range=(1, 2), sublinear_tf=True)),\n                ('linearsvc', LinearSVC(C=3))])",
+    "n_atributos": 223800,
+    "atualizado_em": "2026-10-27 10:51:04"
+  },
+  "validacao": {
+    "n": 1078,
+    "acuracia": 0.975881,
+    "precisao_fake": 0.986717,
+    "revocacao_fake": 0.96475,
+    "f1_fake": 0.97561,
+    "f1_macro": 0.975878,
+    "mcc": 0.951998,
+    "matriz_confusao": [
+      [
+        532,
+        7
+      ],
+      [
+        19,
+        520
+      ]
+    ],
+    "roc_auc": 0.997494,
+    "ic95": {
+      "acuracia": [
+        0.966605,
+        0.98423
+      ],
+      "f1_fake": [
+        0.965843,
+        0.984157
+      ],
+      "f1_macro": [
+        0.966588,
+        0.98423
+      ]
+    }
+  },
+  "teste": {
+    "n": 1080,
+    "acuracia": 0.971296,
+    "precisao_fake": 0.981096,
+    "revocacao_fake": 0.961111,
+    "f1_fake": 0.971001,
+    "f1_macro": 0.971293,
+    "mcc": 0.942788,
+    "matriz_confusao": [
+      [
+        530,
+        10
+      ],
+      [
+        21,
+        519
+      ]
+    ],
+    "roc_auc": 0.996766,
+    "ic95": {
+      "acuracia": [
+        0.960185,
+        0.981481
+      ],
+      "f1_fake": [
+        0.959922,
+        0.981343
+      ],
+      "f1_macro": [
+        0.960183,
+        0.98148
+      ]
+    }
+  }
+}

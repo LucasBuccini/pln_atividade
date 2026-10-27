@@ -1,0 +1,87 @@
+{
+  "modelo": "e5_congelado",
+  "info": {
+    "familia": "2. Embeddings congelados",
+    "descricao": "Multilingual-E5 Base congelado + RegLog",
+    "versao_corpus": "normalizado",
+    "preprocessamento": "minimo",
+    "modelo_hf": "intfloat/multilingual-e5-base",
+    "max_tokens": 512,
+    "dimensao": 768,
+    "melhores_hiperparametros": {
+      "logisticregression__C": 0.01
+    },
+    "cv_acuracia_media": 0.927381,
+    "cv_acuracia_dp": 0.006856,
+    "tempo_busca_s": 2.01,
+    "atualizado_em": "2026-10-27 10:54:52"
+  },
+  "validacao": {
+    "n": 1080,
+    "acuracia": 0.92963,
+    "precisao_fake": 0.947876,
+    "revocacao_fake": 0.909259,
+    "f1_fake": 0.928166,
+    "f1_macro": 0.9296,
+    "mcc": 0.859973,
+    "matriz_confusao": [
+      [
+        513,
+        27
+      ],
+      [
+        49,
+        491
+      ]
+    ],
+    "roc_auc": 0.982356,
+    "ic95": {
+      "acuracia": [
+        0.913889,
+        0.944444
+      ],
+      "f1_fake": [
+        0.911734,
+        0.943609
+      ],
+      "f1_macro": [
+        0.913842,
+        0.944432
+      ]
+    }
+  },
+  "teste": {
+    "n": 1080,
+    "acuracia": 0.912037,
+    "precisao_fake": 0.914339,
+    "revocacao_fake": 0.909259,
+    "f1_fake": 0.911792,
+    "f1_macro": 0.912036,
+    "mcc": 0.824087,
+    "matriz_confusao": [
+      [
+        494,
+        46
+      ],
+      [
+        49,
+        491
+      ]
+    ],
+    "roc_auc": 0.974966,
+    "ic95": {
+      "acuracia": [
+        0.896296,
+        0.928704
+      ],
+      "f1_fake": [
+        0.895604,
+        0.928442
+      ],
+      "f1_macro": [
+        0.896291,
+        0.928699
+      ]
+    }
+  }
+}

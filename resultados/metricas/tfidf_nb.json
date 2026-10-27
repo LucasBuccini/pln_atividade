@@ -1,0 +1,87 @@
+{
+  "modelo": "tfidf_nb",
+  "info": {
+    "familia": "1. Clássicos",
+    "descricao": "TF-IDF (1-2) + Naive Bayes Multinomial",
+    "versao_corpus": "normalizado",
+    "preprocessamento": "sem_stopwords",
+    "melhores_hiperparametros": {
+      "multinomialnb__alpha": 0.3
+    },
+    "cv_acuracia_media": 0.894246,
+    "cv_acuracia_dp": 0.005771,
+    "tempo_busca_s": 3.36,
+    "tempo_inferencia_teste_s": 0.07,
+    "modelo": "Pipeline(steps=[('tfidfvectorizer',\n                 TfidfVectorizer(lowercase=False, max_df=0.95, min_df=2,\n                                 ngram_range=(1, 2), sublinear_tf=True)),\n                ('multinomialnb', MultinomialNB(alpha=0.3))])",
+    "n_atributos": 67032,
+    "atualizado_em": "2026-10-27 10:34:41"
+  },
+  "validacao": {
+    "n": 1080,
+    "acuracia": 0.889815,
+    "precisao_fake": 0.904031,
+    "revocacao_fake": 0.872222,
+    "f1_fake": 0.887842,
+    "f1_macro": 0.889781,
+    "mcc": 0.780113,
+    "matriz_confusao": [
+      [
+        490,
+        50
+      ],
+      [
+        69,
+        471
+      ]
+    ],
+    "roc_auc": 0.956423,
+    "ic95": {
+      "acuracia": [
+        0.871296,
+        0.907407
+      ],
+      "f1_fake": [
+        0.868494,
+        0.905769
+      ],
+      "f1_macro": [
+        0.871256,
+        0.907369
+      ]
+    }
+  },
+  "teste": {
+    "n": 1080,
+    "acuracia": 0.884259,
+    "precisao_fake": 0.901354,
+    "revocacao_fake": 0.862963,
+    "f1_fake": 0.881741,
+    "f1_macro": 0.884207,
+    "mcc": 0.769217,
+    "matriz_confusao": [
+      [
+        489,
+        51
+      ],
+      [
+        74,
+        466
+      ]
+    ],
+    "roc_auc": 0.949897,
+    "ic95": {
+      "acuracia": [
+        0.866667,
+        0.901852
+      ],
+      "f1_fake": [
+        0.862101,
+        0.900563
+      ],
+      "f1_macro": [
+        0.866549,
+        0.901836
+      ]
+    }
+  }
+}

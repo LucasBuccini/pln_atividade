@@ -1,0 +1,87 @@
+{
+  "modelo": "bertimbau_congelado",
+  "info": {
+    "familia": "2. Embeddings congelados",
+    "descricao": "BERTimbau Base congelado (média dos tokens) + RegLog",
+    "versao_corpus": "normalizado",
+    "preprocessamento": "minimo",
+    "modelo_hf": "neuralmind/bert-base-portuguese-cased",
+    "max_tokens": 512,
+    "dimensao": 768,
+    "melhores_hiperparametros": {
+      "logisticregression__C": 0.01
+    },
+    "cv_acuracia_media": 0.969841,
+    "cv_acuracia_dp": 0.003582,
+    "tempo_busca_s": 7.02,
+    "atualizado_em": "2026-10-27 10:48:18"
+  },
+  "validacao": {
+    "n": 1080,
+    "acuracia": 0.969444,
+    "precisao_fake": 0.972067,
+    "revocacao_fake": 0.966667,
+    "f1_fake": 0.969359,
+    "f1_macro": 0.969444,
+    "mcc": 0.938903,
+    "matriz_confusao": [
+      [
+        525,
+        15
+      ],
+      [
+        18,
+        522
+      ]
+    ],
+    "roc_auc": 0.995806,
+    "ic95": {
+      "acuracia": [
+        0.959259,
+        0.97963
+      ],
+      "f1_fake": [
+        0.958879,
+        0.979516
+      ],
+      "f1_macro": [
+        0.959256,
+        0.979629
+      ]
+    }
+  },
+  "teste": {
+    "n": 1080,
+    "acuracia": 0.957407,
+    "precisao_fake": 0.966038,
+    "revocacao_fake": 0.948148,
+    "f1_fake": 0.957009,
+    "f1_macro": 0.957404,
+    "mcc": 0.914972,
+    "matriz_confusao": [
+      [
+        522,
+        18
+      ],
+      [
+        28,
+        512
+      ]
+    ],
+    "roc_auc": 0.992558,
+    "ic95": {
+      "acuracia": [
+        0.944444,
+        0.969444
+      ],
+      "f1_fake": [
+        0.943712,
+        0.969245
+      ],
+      "f1_macro": [
+        0.944435,
+        0.969443
+      ]
+    }
+  }
+}

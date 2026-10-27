@@ -2,3 +2,12 @@
 __pycache__/
 *.egg-info/
 .pytest_cache/
+
+# Corpus: baixado por `python -m fakebr.dados` (o particoes.json é versionado)
+dados/Fake.br-Corpus/
+dados/cache/
+
+# Pesos treinados e logs de execução (grandes ou ruidosos); métricas, predições,
+# tabelas e figuras são versionadas para o artigo ser reproduzível sem retreinar.
+resultados/modelos/
+resultados/logs/

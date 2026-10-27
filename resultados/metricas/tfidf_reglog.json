@@ -1,0 +1,87 @@
+{
+  "modelo": "tfidf_reglog",
+  "info": {
+    "familia": "1. Clássicos",
+    "descricao": "TF-IDF (1-2) + Regressão Logística",
+    "versao_corpus": "normalizado",
+    "preprocessamento": "sem_stopwords",
+    "melhores_hiperparametros": {
+      "logisticregression__C": 30
+    },
+    "cv_acuracia_media": 0.926587,
+    "cv_acuracia_dp": 0.005019,
+    "tempo_busca_s": 3.52,
+    "tempo_inferencia_teste_s": 0.07,
+    "modelo": "Pipeline(steps=[('tfidfvectorizer',\n                 TfidfVectorizer(lowercase=False, max_df=0.95, min_df=2,\n                                 ngram_range=(1, 2), sublinear_tf=True)),\n                ('logisticregression',\n                 LogisticRegression(C=30, max_iter=2000))])",
+    "n_atributos": 67032,
+    "atualizado_em": "2026-10-27 10:34:52"
+  },
+  "validacao": {
+    "n": 1080,
+    "acuracia": 0.915741,
+    "precisao_fake": 0.919626,
+    "revocacao_fake": 0.911111,
+    "f1_fake": 0.915349,
+    "f1_macro": 0.915739,
+    "mcc": 0.831517,
+    "matriz_confusao": [
+      [
+        497,
+        43
+      ],
+      [
+        48,
+        492
+      ]
+    ],
+    "roc_auc": 0.97775,
+    "ic95": {
+      "acuracia": [
+        0.898148,
+        0.931505
+      ],
+      "f1_fake": [
+        0.898036,
+        0.931737
+      ],
+      "f1_macro": [
+        0.898148,
+        0.931503
+      ]
+    }
+  },
+  "teste": {
+    "n": 1080,
+    "acuracia": 0.913889,
+    "precisao_fake": 0.908592,
+    "revocacao_fake": 0.92037,
+    "f1_fake": 0.914443,
+    "f1_macro": 0.913885,
+    "mcc": 0.827847,
+    "matriz_confusao": [
+      [
+        490,
+        50
+      ],
+      [
+        43,
+        497
+      ]
+    ],
+    "roc_auc": 0.972589,
+    "ic95": {
+      "acuracia": [
+        0.898125,
+        0.929653
+      ],
+      "f1_fake": [
+        0.898333,
+        0.930405
+      ],
+      "f1_macro": [
+        0.898058,
+        0.929651
+      ]
+    }
+  }
+}

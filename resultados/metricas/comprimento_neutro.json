@@ -1,0 +1,84 @@
+{
+  "modelo": "comprimento_neutro",
+  "info": {
+    "familia": "0. Atalhos",
+    "descricao": "RegLog só com o tamanho do texto, após neutralizar o fim dos textos",
+    "versao_corpus": "normalizado",
+    "preprocessamento": "neutro",
+    "melhores_hiperparametros": {},
+    "cv_acuracia_media": 0.55873,
+    "cv_acuracia_dp": 0.009869,
+    "tempo_busca_s": 3.06,
+    "tempo_inferencia_teste_s": 0.01,
+    "modelo": "Pipeline(steps=[('functiontransformer',\n                 FunctionTransformer(func=<function _atributos_de_comprimento at 0x000002A4F2CF3600>)),\n                ('standardscaler', StandardScaler()),\n                ('logisticregression', LogisticRegression())])",
+    "atualizado_em": "2026-10-27 11:10:30"
+  },
+  "validacao": {
+    "n": 1080,
+    "acuracia": 0.547222,
+    "precisao_fake": 0.546961,
+    "revocacao_fake": 0.55,
+    "f1_fake": 0.548476,
+    "f1_macro": 0.547219,
+    "mcc": 0.094446,
+    "matriz_confusao": [
+      [
+        294,
+        246
+      ],
+      [
+        243,
+        297
+      ]
+    ],
+    "roc_auc": 0.570098,
+    "ic95": {
+      "acuracia": [
+        0.521273,
+        0.572222
+      ],
+      "f1_fake": [
+        0.516914,
+        0.575897
+      ],
+      "f1_macro": [
+        0.520936,
+        0.571697
+      ]
+    }
+  },
+  "teste": {
+    "n": 1080,
+    "acuracia": 0.568519,
+    "precisao_fake": 0.566071,
+    "revocacao_fake": 0.587037,
+    "f1_fake": 0.576364,
+    "f1_macro": 0.56837,
+    "mcc": 0.137131,
+    "matriz_confusao": [
+      [
+        297,
+        243
+      ],
+      [
+        223,
+        317
+      ]
+    ],
+    "roc_auc": 0.613532,
+    "ic95": {
+      "acuracia": [
+        0.541667,
+        0.594444
+      ],
+      "f1_fake": [
+        0.545783,
+        0.604817
+      ],
+      "f1_macro": [
+        0.540866,
+        0.593949
+      ]
+    }
+  }
+}

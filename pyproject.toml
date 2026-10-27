@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pln-prep"
-version = "0.1.0"
-description = "Pré-processamento de texto padronizado e orientado a objetos para os trabalhos de PLN"
+version = "0.2.0"
+description = "Pré-processamento de texto padronizado (pln_prep) e experimentos de detecção de notícias falsas no FAKE.BR (fakebr)"
 requires-python = ">=3.10"
 dependencies = []
 
@@ -14,7 +14,11 @@ nltk = ["nltk"]
 spacy = ["spacy"]
 sklearn = ["scikit-learn"]
 all = ["nltk", "spacy", "scikit-learn"]
-dev = ["pytest", "nltk", "spacy", "scikit-learn"]
+dev = ["pytest", "nltk", "spacy", "scikit-learn", "pandas", "scipy"]
+# Experimentos 0, 1 e relatório (CPU). Versões exatas usadas no artigo: requirements-experimentos.txt
+experimentos = ["nltk", "spacy", "scikit-learn", "numpy", "scipy", "pandas", "matplotlib", "tabulate"]
+# Experimentos 2, 3 e 4 (GPU). Instale o torch com CUDA antes (ver README).
+gpu = ["torch", "transformers>=5", "accelerate", "datasets", "sentence-transformers", "bitsandbytes"]
 
 [tool.setuptools]
-packages = ["pln_prep"]
+packages = ["pln_prep", "fakebr"]

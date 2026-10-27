@@ -1,0 +1,22 @@
+# Versões exatas com que os resultados do artigo foram gerados (Python 3.12.7, Windows 11,
+# NVIDIA RTX 2000 Ada 16 GB, driver CUDA 13.2).
+# O torch com CUDA vem de outro índice:
+#   pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu128
+#   pip install -r requirements-experimentos.txt
+#   python -m spacy download pt_core_news_sm
+#   python -c "import nltk; nltk.download('stopwords'); nltk.download('rslp')"
+accelerate==1.15.0
+bitsandbytes==0.50.2
+datasets==5.1.0
+huggingface_hub==2.2.0
+matplotlib==3.11.2
+nltk==3.10.3
+numpy==2.5.4
+pandas==3.0.6
+scikit-learn==1.9.1
+scipy==1.18.1
+sentence-transformers==6.2.0
+spacy==3.8.16
+tabulate==0.10.0
+transformers==5.21.0
+pytest==9.1.1
