@@ -17,6 +17,31 @@
 \usepackage{xcolor}
 \usepackage{adjustbox}       % encolhe tabelas largas até caberem na coluna/página (nunca amplia)
 
+% Bloco do título igual ao do linguamatica.sty, sem a linha "Proposta recebida em ... e aceite
+% para publicação em ...", que o estilo imprime em português com as datas da revista (vazias aqui).
+% Mantemos o babel em "portuges" porque é ele que dá o rótulo "Palavras chave".
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE {\@title} \par}~\\[0mm]%
+    {\small \bf \EnglishTitle}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em}
+\makeatother
+
 \title{Atalhos de Fonte e de Formatação na Detecção\\de Notícias Falsas em Português}
 \titleEN{Source and Formatting Shortcuts in Portuguese Fake News Detection}
 
@@ -35,9 +60,6 @@
 \begin{document}
 
 \maketitle
-% Remove o cabeçalho da 1ª página ("Proposta recebida em ... e aceite para publicação em ."),
-% que o estilo preenche com as datas de submissão/aceite da revista, vazias neste trabalho.
-\thispagestyle{empty}
 
 \begin{resumo}
 Comparamos, sob um protocolo único, quatro famílias de classificadores para detectar notícias falsas em português no Fake.Br: modelos estatísticos sobre TF-IDF, embeddings congelados, o BERTimbau com ajuste fino e um LLM de pesos abertos (Qwen2.5-7B) por aprendizado no contexto. Antes de comparar modelos, quantificamos três atalhos do corpus: nos textos completos, só o tamanho dá 94,2\% de acurácia; na versão de tamanho normalizado, o truncamento deixa 93\% das notícias verdadeiras terminando no meio de uma frase, e quatro marcas de formatação bastam para 83,1\%; e 93\% das falsas vêm de um único site. Nos textos normalizados, a SVM sobre palavras atinge 91,7\%, n-gramas de caracteres 94,6\%, embeddings congelados do BERTimbau 95,7\%, o BERTimbau ajustado 99,5\% e o LLM 78,4\% (few-shot calibrado). Com os artefatos de formatação neutralizados, o BERTimbau ajustado mantém 98,7\% e é o único modelo que generaliza para as fontes minoritárias. A avaliação no Fake.Br precisa controlar tamanho, formatação e fonte para que os números signifiquem detecção de desinformação.
