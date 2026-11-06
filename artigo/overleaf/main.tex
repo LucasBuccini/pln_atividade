@@ -3,8 +3,8 @@
 % (que já contém linguamatica.sty e sp_por.bst) e substitua o main.tex de exemplo.
 % Se o preâmbulo do projeto do professor for diferente deste, mantenha o dele e cole daqui
 % só o conteúdo entre \begin{document} e \end{document}.
-% Números: resultados/tabelas/ (gerados por `python -m fakebr.relatorio`).
-% \conferir{...} marca afirmações sobre trabalhos de terceiros a confirmar na fonte (sai em vermelho).
+% Números: resultados/tabelas/ (gerados por `python -m fakebr.relatorio`). Os valores citados de
+% trabalhos de terceiros foram conferidos nos PDFs originais (Monteiro 2018, Silva 2020, Pires 2024, Calaigian 2023).
 \documentclass[a4paper, twocolumn, 11pt, twoside]{article}
 
 \usepackage[utf8]{inputenc}
@@ -16,8 +16,6 @@
 \usepackage{booktabs}
 \usepackage{xcolor}
 \usepackage{adjustbox}       % encolhe tabelas largas até caberem na coluna/página (nunca amplia)
-
-\newcommand{\conferir}[1]{\textcolor{red}{[conferir: #1]}}
 
 \title{Atalhos de Fonte e de Formatação na Detecção\\de Notícias Falsas em Português}
 \titleEN{Source and Formatting Shortcuts in Portuguese Fake News Detection}
@@ -60,7 +58,7 @@ As contribuições são: (i)~um protocolo de avaliação reprodutível para o Fa
 % ============================================================================================
 \section{Trabalhos Relacionados}
 
-\paragraph{Fake.Br.} \citet{monteiro2018} construíram o corpus e obtiveram cerca de 89\% de F1 com SVM sobre a versão de tamanho normalizado \conferir{valor e atributos}. \citet{silva2020} ampliaram a avaliação com diversas representações e classificadores \conferir{melhores resultados}. Ambos já apontavam a diferença de tamanho entre as classes, razão da versão normalizada.
+\paragraph{Fake.Br.} \citet{monteiro2018} introduziram o corpus e, com SVM linear e validação cruzada de 5 dobras sobre os textos truncados, obtiveram F1 de 0,88 com \emph{bag of words} binário de unigramas e 0,89 combinando todos os atributos; com os textos completos a acurácia chegava a 96\%, resultado que os próprios autores consideraram provavelmente enviesado pelo tamanho. \citet{silva2020} ampliaram a avaliação com TF-IDF, atributos linguísticos e \emph{word embeddings}: nos textos truncados, \emph{bag of words} com Regressão Logística alcançou F1 de 0,937 e a combinação com atributos linguísticos, 0,965; remover \emph{stopwords} e radicalizar pioraram os resultados, e os autores recomendam avaliar sempre nos textos truncados. \citet{calaigian2023} também não encontraram ganho com radicalização ou lematização. Com Transformers, \citet{pires2024} ajustaram BERT, mBERT e BERTimbau e obtiveram 95,0\% de acurácia com o BERTimbau, usando a versão pré-processada do corpus (minúsculas, sem \emph{stopwords} nem acentos) limitada a 128 \emph{tokens}.
 
 \paragraph{Classificação clássica de textos.} TF-IDF \citep{salton1988} com SVM linear \citep{joachims1998} ou Naive Bayes Multinomial \citep{mccallum1998} é uma linha de base forte em espaços esparsos de alta dimensionalidade, com treino em segundos e pesos interpretáveis.
 
@@ -110,7 +108,7 @@ A normalização corrige o tamanho, mas cria outro sinal. Como o texto truncado 
 
 \subsection{Concentração das fontes}
 
-As notícias falsas vêm de apenas seis sites, e \textbf{3\,335 das 3\,600 (92,6\%) de um único domínio} (diariodobrasil.org); as verdadeiras vêm de 25 domínios, com predominância do G1 e do Estadão. Um classificador pode, assim, aprender o estilo editorial de um site em vez de marcas gerais de desinformação. No teste, apenas 44 notícias falsas vêm de outras fontes.
+Segundo os \emph{links} nos metadados, as notícias falsas vêm de apenas seis domínios, e \textbf{3\,335 das 3\,600 (92,6\%) de um único} (diariodobrasil.org), em acordo com as 3\,338 notícias do Diário do Brasil relatadas pelos autores do corpus~\citep{monteiro2018}; as verdadeiras vêm de 25 domínios, com predominância do G1 e do Estadão. Um classificador pode, assim, aprender o estilo editorial de um site em vez de marcas gerais de desinformação. No teste, apenas 44 notícias falsas vêm de outras fontes.
 
 \subsection{Qualidade dos dados}
 
@@ -199,13 +197,13 @@ Só com o tamanho do texto, uma Regressão Logística acerta 94,2\% das notícia
 
 \subsection{Modelos estatísticos}
 
-SVM linear (91,7\%) e Regressão Logística (91,4\%) são equivalentes e superam o Naive Bayes (88,4\%; McNemar, $p$ ajustado $< 0{,}001$), em linha com \citet{monteiro2018} \conferir{valor}. Nenhuma normalização morfológica ajudou: radicalização (90,1\%) e lematização (89,7\%) ficaram abaixo da SVM sem normalização, e manter as \emph{stopwords} não mudou o resultado (91,9\%). A maior melhora veio dos n-gramas de caracteres com pré-processamento mínimo (94,6\%; $p$ ajustado $< 0{,}001$ contra a SVM sobre palavras), ganho que não vem dos artefatos: no texto neutro eles mantêm 93,9\%.
+SVM linear (91,7\%) e Regressão Logística (91,4\%) são equivalentes e superam o Naive Bayes (88,4\%; McNemar, $p$ ajustado $< 0{,}001$). A SVM fica acima do F1 de 0,88 obtido por \citet{monteiro2018} com \emph{bag of words} binário e abaixo do 0,937 de \citet{silva2020}, mas os protocolos diferem (truncamento, partição e métrica), e os números não são diretamente comparáveis. Nenhuma normalização morfológica ajudou: radicalização (90,1\%) e lematização (89,7\%) ficaram abaixo da SVM sem normalização, como também observaram \citet{silva2020} e \citet{calaigian2023}, e manter as \emph{stopwords} não mudou o resultado (91,9\%). A maior melhora veio dos n-gramas de caracteres com pré-processamento mínimo (94,6\%; $p$ ajustado $< 0{,}001$ contra a SVM sobre palavras), ganho que não vem dos artefatos: no texto neutro eles mantêm 93,9\%.
 
 Entre os termos de maior peso da SVM, os associados às verdadeiras são convenções do jornalismo profissional (``nesta terça'', ``quarta-feira'', ``segundo''); do lado das falsas aparecem nomes de políticos, verbos de relato (``disse'', ``declarou'') e marcas de registro como ``pra'' e ``coréia'', grafia anterior ao Acordo Ortográfico, enquanto as verdadeiras usam ``coreia''. São indícios de que o modelo captura o estilo editorial das fontes, e não a veracidade.
 
 \subsection{Representações contextuais e ajuste fino}
 
-Os embeddings congelados do BERTimbau (95,7\%) superam a SVM sobre palavras ($p$ ajustado $< 0{,}001$) e empatam com os n-gramas de caracteres ($p$ ajustado $= 0{,}28$); o Multilingual-E5 (91,2\%) fica no nível do TF-IDF, indicando que o pré-treinamento em português importa mais que o treinamento para similaridade. O ajuste fino leva o BERTimbau a 99,5\% $\pm$ 0,1 (99,6\%, 99,5\% e 99,4\% nas três sementes), com 4 a 6 erros em 1\,080 notícias, superando todos os demais modelos ($p$ ajustado $< 10^{-10}$).
+Os embeddings congelados do BERTimbau (95,7\%) superam a SVM sobre palavras ($p$ ajustado $< 0{,}001$) e empatam com os n-gramas de caracteres ($p$ ajustado $= 0{,}28$); o Multilingual-E5 (91,2\%) fica no nível do TF-IDF, indicando que o pré-treinamento em português importa mais que o treinamento para similaridade. O ajuste fino leva o BERTimbau a 99,5\% $\pm$ 0,1 (99,6\%, 99,5\% e 99,4\% nas três sementes), com 4 a 6 erros em 1\,080 notícias, superando todos os demais modelos ($p$ ajustado $< 10^{-10}$) e os 95,0\% relatados por \citet{pires2024}, que usaram texto sem acentos nem \emph{stopwords} e apenas 128 \emph{tokens}; a diferença sugere que a pontuação, a caixa e o contexto mais longo ajudam o modelo.
 
 \subsection{LLM por aprendizado no contexto}
 
