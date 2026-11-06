@@ -1,0 +1,109 @@
+{
+  "modelo": "qwen7b_k4_calibrado",
+  "info": {
+    "familia": "4. LLM (aprendizado no contexto)",
+    "modelo_hf": "C:/Users/202401005185/modelos/Qwen2.5-7B-Instruct",
+    "k": 4,
+    "quantizacao": "nf4-4bit",
+    "versao_corpus": "normalizado",
+    "preprocessamento": "minimo",
+    "max_palavras": 400,
+    "max_palavras_exemplo": 150,
+    "amostra_pares": "todos",
+    "instrucao": "Você é um checador de fatos especializado em notícias brasileiras. Sua tarefa é classificar uma notícia como FALSA (desinformação, boato, conteúdo fabricado ou distorcido) ou VERDADEIRA (jornalismo factual publicado por veículo confiável). Considere o conteúdo, o estilo e a plausibilidade. Responda com uma única palavra: FALSA ou VERDADEIRA.",
+    "exemplos": [
+      [
+        "UE exige que Brasil suspenda exportação de empresas envolvidas em fraude na Oper...",
+        "VERDADEIRA"
+      ],
+      [
+        "Jorge Fernando, diretor da Globo, sofreu AVC e precisou ser internado às pressas...",
+        "FALSA"
+      ],
+      [
+        "Ex-ministro de Dilma é hostilizado em restaurante: \"ladrão ... safado\". . Patrus...",
+        "FALSA"
+      ],
+      [
+        "Deputado Jair Bolsonaro anuncia filiação ao PSL Atualmente no PSC, deputado será...",
+        "VERDADEIRA"
+      ]
+    ],
+    "tempo_inferencia_s": {
+      "validacao": 1224.63,
+      "teste": 1236.91
+    },
+    "limiar_validacao": -2.3125,
+    "descricao": "Qwen2.5-7B-Instruct few-shot (k=4), limiar calibrado",
+    "regra": "limiar da validação",
+    "atualizado_em": "2026-11-06 10:45:59"
+  },
+  "validacao": {
+    "n": 1080,
+    "acuracia": 0.787963,
+    "precisao_fake": 0.792844,
+    "revocacao_fake": 0.77963,
+    "f1_fake": 0.786181,
+    "f1_macro": 0.787948,
+    "mcc": 0.576006,
+    "matriz_confusao": [
+      [
+        430,
+        110
+      ],
+      [
+        119,
+        421
+      ]
+    ],
+    "roc_auc": 0.852617,
+    "ic95": {
+      "acuracia": [
+        0.764792,
+        0.809259
+      ],
+      "f1_fake": [
+        0.761994,
+        0.808397
+      ],
+      "f1_macro": [
+        0.764537,
+        0.809207
+      ]
+    }
+  },
+  "teste": {
+    "n": 1080,
+    "acuracia": 0.784259,
+    "precisao_fake": 0.798058,
+    "revocacao_fake": 0.761111,
+    "f1_fake": 0.779147,
+    "f1_macro": 0.784144,
+    "mcc": 0.569129,
+    "matriz_confusao": [
+      [
+        436,
+        104
+      ],
+      [
+        129,
+        411
+      ]
+    ],
+    "roc_auc": 0.85518,
+    "ic95": {
+      "acuracia": [
+        0.762037,
+        0.808333
+      ],
+      "f1_fake": [
+        0.755079,
+        0.804144
+      ],
+      "f1_macro": [
+        0.761786,
+        0.808083
+      ]
+    }
+  }
+}

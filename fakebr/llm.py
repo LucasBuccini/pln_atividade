@@ -107,7 +107,9 @@ class ClassificadorLLM:
             entrada = self.tokenizador([prompts[i] for i in idx], return_tensors="pt", padding=True,
                                        add_special_tokens=False).to(self.modelo.device)
             with torch.inference_mode():
-                logits = self.modelo(**entrada).logits[:, -1, :].float()
+                # Só a última posição: os logits de todas (vocabulário de 152 mil × prompt inteiro)
+                # ocupariam vários GB no few-shot e transbordariam a memória da GPU.
+                logits = self.modelo(**entrada, logits_to_keep=1).logits[:, -1, :].float()
             logp = torch.log_softmax(logits, dim=-1)
             esc = (logp[:, self.token[config.POSITIVO]] - logp[:, self.token[config.NEGATIVO]]).cpu().numpy()
             saida.extend(zip(idx, esc))
@@ -166,7 +168,9 @@ def main(argv: list[str] | None = None) -> None:
                 escores[parte] = clf.escores(prompts, args.lote)
             tempos[parte] = t.segundos
         limiar = limiar_otimo(partes["validacao"].rotulos, escores["validacao"])
-        tipo = "Zero-shot" if k == 0 else f"Few-shot (k={k})"
+        tipo = "zero-shot" if k == 0 else f"few-shot k={k}"
+        if args.preprocessamento == "neutro":
+            tipo += ", artefatos neutralizados"
         info = {
             "familia": "4. LLM (aprendizado no contexto)", "modelo_hf": args.modelo, "k": k,
             "quantizacao": None if args.sem_quantizar else "nf4-4bit", "versao_corpus": "normalizado",

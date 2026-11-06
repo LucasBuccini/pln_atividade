@@ -85,6 +85,28 @@ def test_exemplos_few_shot_balanceados_e_de_pares_distintos():
     assert escolher_exemplos(treino, textos, k=0, max_palavras=50, semente=1) == []
 
 
+# Neutralização dos artefatos de formatação
+@pytest.mark.parametrize("entrada, esperado", [
+    # verdadeira truncada no meio da frase: a frase incompleta sai
+    ("Título sem ponto Corpo da notícia. Outra frase completa. E esta foi cort", "Título sem ponto Corpo da notícia. Outra frase completa"),
+    # falsa completa: só a pontuação final sai
+    ("Título. . Corpo da notícia. Fim da notícia!", "Título. Corpo da notícia. Fim da notícia"),
+    # aspas curvas viram retas; aspas de fechamento no fim também saem
+    ("Ele disse “basta”. Depois “acabou.”", 'Ele disse "basta". Depois "acabou'),
+    # sem nenhum fim de frase: nada a cortar
+    ("texto sem pontuação nenhuma", "texto sem pontuação nenhuma"),
+])
+def test_neutro_padroniza_fim_aspas_e_ponto_duplo(entrada, esperado):
+    from fakebr.classicos import PREPROCESSAMENTOS
+    assert PREPROCESSAMENTOS["neutro"]()(entrada) == esperado
+
+
+def test_atributos_de_formatacao():
+    from fakebr.classicos import _atributos_de_formatacao
+    a = _atributos_de_formatacao(['Ele disse "oi".', "Título. . Corpo “x” sem fim"])
+    assert a.tolist() == [[1, 1, 0, 0], [0, 0, 1, 1]]
+
+
 # Partições reais (só roda se o corpus já foi baixado)
 @pytest.mark.skipif(not config.CORPUS.is_dir(), reason="corpus não baixado (python -m fakebr.dados)")
 def test_particoes_sem_vazamento_de_pares():

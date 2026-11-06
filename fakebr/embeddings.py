@@ -51,15 +51,15 @@ CODIFICADORES = [
 POR_NOME = {c.nome: c for c in CODIFICADORES}
 
 
-def codificar(cod: Codificador, corpus) -> np.ndarray:
-    """Vetores do corpus inteiro, na ordem de corpus.ids, com cache em disco."""
+def codificar(cod: Codificador, corpus) -> tuple[np.ndarray, float]:
+    """Vetores do corpus inteiro (na ordem de corpus.ids) e o tempo de codificação, com cache em disco."""
     config.garantir_pastas()
     caminho = config.CACHE / f"emb_{cod.nome}.npz"
     assinatura = assinatura_preprocessamento(cod.preprocessamento)
     if caminho.exists():
         salvo = np.load(caminho, allow_pickle=False)
         if list(salvo["ids"]) == corpus.ids and "assinatura" in salvo.files and str(salvo["assinatura"]) == assinatura:
-            return salvo["vetores"]
+            return salvo["vetores"], float(salvo["segundos"])
     import torch
     from sentence_transformers import SentenceTransformer
 
@@ -71,14 +71,15 @@ def codificar(cod: Codificador, corpus) -> np.ndarray:
                                 convert_to_numpy=True)
     print(f"  {cod.nome}: {len(textos)} textos codificados em {t.segundos}s")
     np.savez(caminho, ids=np.array(corpus.ids), vetores=vetores, segundos=t.segundos, assinatura=assinatura)
-    return vetores
+    return vetores, t.segundos
 
 
 def rodar(cod: Codificador) -> None:
     print(f"\n=== {cod.nome}: {cod.descricao}")
     config.fixar_sementes()
     corpus = dados.carregar("normalizado")
-    vetores = dict(zip(corpus.ids, codificar(cod, corpus)))
+    matriz, segundos = codificar(cod, corpus)
+    vetores = dict(zip(corpus.ids, matriz))
     partes = dados.dividir(corpus)
     X = {p: np.stack([vetores[i] for i in c.ids]) for p, c in partes.items()}
     treino = partes["treino"]
@@ -96,7 +97,7 @@ def rodar(cod: Codificador) -> None:
         "dimensao": int(X["treino"].shape[1]), "melhores_hiperparametros": busca.best_params_,
         "cv_acuracia_media": round(float(busca.cv_results_["mean_test_score"][i]), 6),
         "cv_acuracia_dp": round(float(busca.cv_results_["std_test_score"][i]), 6),
-        "tempo_busca_s": t.segundos,
+        "tempo_busca_s": t.segundos, "tempo_codificacao_s": round(segundos, 2),
     }
     for parte in ("validacao", "teste"):
         registrar(cod.nome, parte, partes[parte], modelo.predict(X[parte]), escores_fake(modelo, X[parte]), info)

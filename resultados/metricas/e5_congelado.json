@@ -13,8 +13,9 @@
     },
     "cv_acuracia_media": 0.927381,
     "cv_acuracia_dp": 0.006856,
-    "tempo_busca_s": 2.01,
-    "atualizado_em": "2026-10-27 10:54:52"
+    "tempo_busca_s": 2.38,
+    "atualizado_em": "2026-11-03 10:07:32",
+    "tempo_codificacao_s": 181.57
   },
   "validacao": {
     "n": 1080,

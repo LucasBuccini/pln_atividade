@@ -1,12 +1,15 @@
 Precisão, revocação e F1 referem-se à classe *falsa*. Valores em %.
 
-**0. Viés de tamanho**
+**0. Atalhos**
 
-| Modelo                                                 | Acurácia   | IC 95%       | Precisão   | Revocação   | F1   | F1 macro   |   ROC-AUC |
-|:-------------------------------------------------------|:-----------|:-------------|:-----------|:------------|:-----|:-----------|----------:|
-| TF-IDF (1-2) + SVM linear nos textos completos         | 97,1       | [96,0; 98,1] | 98,1       | 96,1        | 97,1 | 97,1       |     0,997 |
-| RegLog só com o tamanho do texto (textos completos)    | 94,2       | [92,7; 95,6] | 93,3       | 95,2        | 94,2 | 94,2       |     0,981 |
-| RegLog só com o tamanho do texto (textos normalizados) | 56,4       | [53,3; 59,2] | 56,7       | 54,3        | 55,4 | 56,4       |     0,598 |
+| Modelo                                                               | Acurácia   | IC 95%       | Precisão   | Revocação   | F1   | F1 macro   |   ROC-AUC |
+|:---------------------------------------------------------------------|:-----------|:-------------|:-----------|:------------|:-----|:-----------|----------:|
+| TF-IDF (1-2) + SVM linear nos textos completos                       | 97,1       | [96,0; 98,1] | 98,1       | 96,1        | 97,1 | 97,1       |     0,997 |
+| RegLog só com o tamanho do texto (textos completos)                  | 94,2       | [92,7; 95,6] | 93,3       | 95,2        | 94,2 | 94,2       |     0,981 |
+| RegLog só com 4 marcas de formatação (pontuação final, aspas, '. .') | 83,1       | [80,6; 85,3] | 90,3       | 74,1        | 81,4 | 82,9       |     0,909 |
+| RegLog só com as marcas de formatação, após neutralizá-las           | 66,7       | [64,3; 69,2] | 62,6       | 83,0        | 71,3 | 65,8       |     0,667 |
+| RegLog só com o tamanho do texto, após neutralizar o fim dos textos  | 56,9       | [54,2; 59,4] | 56,6       | 58,7        | 57,6 | 56,8       |     0,614 |
+| RegLog só com o tamanho do texto (textos normalizados)               | 56,4       | [53,3; 59,2] | 56,7       | 54,3        | 55,4 | 56,4       |     0,598 |
 
 **1. Clássicos**
 
@@ -18,10 +21,37 @@ Precisão, revocação e F1 referem-se à classe *falsa*. Valores em %.
 
 **1. Clássicos: ablação**
 
-| Modelo                                                       | Acurácia   | IC 95%       | Precisão   | Revocação   | F1   | F1 macro   |   ROC-AUC |
-|:-------------------------------------------------------------|:-----------|:-------------|:-----------|:------------|:-----|:-----------|----------:|
-| TF-IDF de n-gramas de caracteres (2-5) + SVM, limpeza mínima | 94,6       | [93,2; 95,9] | 96,2       | 93,0        | 94,5 | 94,6       |     0,987 |
-| TF-IDF (1-2) + SVM, mantendo stopwords                       | 91,9       | [90,2; 93,4] | 91,9       | 91,9        | 91,9 | 91,9       |     0,975 |
-| TF-IDF (1) + SVM, só unigramas                               | 91,0       | [89,4; 92,7] | 91,1       | 90,9        | 91,0 | 91,0       |     0,968 |
-| TF-IDF (1-2) + SVM, com radicalização RSLP                   | 90,1       | [88,4; 91,8] | 90,2       | 90,0        | 90,1 | 90,1       |     0,966 |
-| TF-IDF (1-2) + SVM, com lematização (spaCy)                  | 89,7       | [87,9; 91,4] | 89,5       | 90,0        | 89,8 | 89,7       |     0,963 |
+| Modelo                                                                | Acurácia   | IC 95%       | Precisão   | Revocação   | F1   | F1 macro   |   ROC-AUC |
+|:----------------------------------------------------------------------|:-----------|:-------------|:-----------|:------------|:-----|:-----------|----------:|
+| TF-IDF de n-gramas de caracteres (2-5) + SVM, limpeza mínima          | 94,6       | [93,2; 95,9] | 96,2       | 93,0        | 94,5 | 94,6       |     0,987 |
+| TF-IDF de n-gramas de caracteres (2-5) + SVM, artefatos neutralizados | 93,9       | [92,4; 95,3] | 95,1       | 92,6        | 93,8 | 93,9       |     0,985 |
+| TF-IDF (1-2) + SVM, mantendo stopwords                                | 91,9       | [90,2; 93,4] | 91,9       | 91,9        | 91,9 | 91,9       |     0,975 |
+| TF-IDF (1) + SVM, só unigramas                                        | 91,0       | [89,4; 92,7] | 91,1       | 90,9        | 91,0 | 91,0       |     0,968 |
+| TF-IDF (1-2) + SVM, com radicalização RSLP                            | 90,1       | [88,4; 91,8] | 90,2       | 90,0        | 90,1 | 90,1       |     0,966 |
+| TF-IDF (1-2) + SVM, com lematização (spaCy)                           | 89,7       | [87,9; 91,4] | 89,5       | 90,0        | 89,8 | 89,7       |     0,963 |
+
+**2. Embeddings congelados**
+
+| Modelo                                                     | Acurácia   | IC 95%       | Precisão   | Revocação   | F1   | F1 macro   |   ROC-AUC |
+|:-----------------------------------------------------------|:-----------|:-------------|:-----------|:------------|:-----|:-----------|----------:|
+| BERTimbau Base congelado (média dos tokens) + RegLog       | 95,7       | [94,4; 96,9] | 96,6       | 94,8        | 95,7 | 95,7       |     0,993 |
+| BERTimbau Base congelado + RegLog, artefatos neutralizados | 93,4       | [91,9; 94,9] | 93,8       | 93,0        | 93,4 | 93,4       |     0,982 |
+| Multilingual-E5 Base congelado + RegLog                    | 91,2       | [89,6; 92,9] | 91,4       | 90,9        | 91,2 | 91,2       |     0,975 |
+
+**3. Transformer ajustado**
+
+| Modelo                                                  | Acurácia   | IC 95%     | Precisão   | Revocação   | F1         | F1 macro   | ROC-AUC       |
+|:--------------------------------------------------------|:-----------|:-----------|:-----------|:------------|:-----------|:-----------|:--------------|
+| BERTimbau Base com ajuste fino                          | 99,5 ± 0,1 | média ± dp | 99,7 ± 0,1 | 99,4 ± 0,1  | 99,5 ± 0,1 | 99,5 ± 0,1 | 1,000 ± 0,000 |
+| BERTimbau Base com ajuste fino, artefatos neutralizados | 98,7 ± 0,3 | média ± dp | 99,2 ± 0,3 | 98,2 ± 0,6  | 98,7 ± 0,3 | 98,7 ± 0,3 | 0,999 ± 0,000 |
+
+**4. LLM (aprendizado no contexto)**
+
+| Modelo                                                                   | Acurácia   | IC 95%       | Precisão   | Revocação   | F1   | F1 macro   |   ROC-AUC |
+|:-------------------------------------------------------------------------|:-----------|:-------------|:-----------|:------------|:-----|:-----------|----------:|
+| Qwen2.5-7B-Instruct few-shot (k=4), limiar calibrado                     | 78,4       | [76,2; 80,8] | 79,8       | 76,1        | 77,9 | 78,4       |     0,855 |
+| Qwen2.5-7B-Instruct zero-shot, artefatos neutralizados, limiar calibrado | 78,2       | [76,0; 80,6] | 81,1       | 73,7        | 77,2 | 78,2       |     0,859 |
+| Qwen2.5-7B-Instruct few-shot (k=4)                                       | 76,4       | [74,0; 78,9] | 82,3       | 67,2        | 74,0 | 76,2       |     0,855 |
+| Qwen2.5-7B-Instruct zero-shot, limiar calibrado                          | 75,6       | [73,2; 78,1] | 74,8       | 77,4        | 76,1 | 75,6       |     0,832 |
+| Qwen2.5-7B-Instruct zero-shot, artefatos neutralizados                   | 70,7       | [68,6; 73,1] | 90,3       | 46,5        | 61,4 | 68,9       |     0,859 |
+| Qwen2.5-7B-Instruct zero-shot                                            | 69,6       | [67,5; 71,9] | 90,2       | 44,1        | 59,2 | 67,5       |     0,832 |

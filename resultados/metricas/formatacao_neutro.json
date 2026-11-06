@@ -8,10 +8,10 @@
     "melhores_hiperparametros": {},
     "cv_acuracia_media": 0.68631,
     "cv_acuracia_dp": 0.015246,
-    "tempo_busca_s": 2.69,
+    "tempo_busca_s": 3.22,
     "tempo_inferencia_teste_s": 0.01,
-    "modelo": "Pipeline(steps=[('functiontransformer',\n                 FunctionTransformer(func=<function _atributos_de_formatacao at 0x000002A4F2CF3740>)),\n                ('logisticregression', LogisticRegression())])",
-    "atualizado_em": "2026-10-27 11:10:34"
+    "modelo": "Pipeline(steps=[('functiontransformer',\n                 FunctionTransformer(func=<function _atributos_de_formatacao at 0x00000213DAC23740>)),\n                ('logisticregression', LogisticRegression())])",
+    "atualizado_em": "2026-11-03 09:56:05"
   },
   "validacao": {
     "n": 1080,

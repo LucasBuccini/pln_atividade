@@ -7,7 +7,7 @@ Trabalho de PLN: comparação entre modelos estatísticos, embeddings congelados
 |---|---|
 | [fakebr/](fakebr/) | Experimentos do artigo. Cada módulo é uma etapa e roda pela linha de comando. |
 | [pln_prep/](pln_prep/) | Biblioteca genérica de pré-processamento usada pelos experimentos (documentada [abaixo](#pln_prep--pré-processamento-padronizado-para-pln)). |
-| [artigo/](artigo/) | Rascunho do artigo ([artigo.md](artigo/artigo.md)) e referências ([referencias.bib](artigo/referencias.bib)). |
+| [artigo/overleaf/](artigo/overleaf/) | Artigo no modelo da Linguamática ([main.tex](artigo/overleaf/main.tex), [referencias.bib](artigo/overleaf/referencias.bib), figuras). `python artigo/montar_overleaf.py` confere o `.tex` e gera `artigo/entrega_overleaf.zip`. |
 | [resultados/](resultados/) | Métricas (JSON), predições por notícia (CSV), tabelas (Markdown/LaTeX) e figuras (PDF/PNG). |
 | [dados/particoes.json](dados/particoes.json) | Partição fixa treino/validação/teste por pares (versionada). |
 
@@ -24,18 +24,26 @@ python -m fakebr.dados          # baixa o corpus (git clone) e confere as parti�
 python -m fakebr.exploracao     # Seção 3: estatísticas do corpus e viés de tamanho
 python -m fakebr.classicos      # Exp. 0 e 1: tamanho, TF-IDF + NB/SVM/RegLog e ablações   (CPU, ~3 min)
 python -m fakebr.embeddings     # Exp. 2: BERTimbau e E5 congelados + RegLog                (GPU, ~5 min)
-python -m fakebr.bertimbau      # Exp. 3: ajuste fino, 3 sementes                            (GPU)
+python -m fakebr.bertimbau      # Exp. 3: ajuste fino, 3 sementes                            (GPU, ~6 min/semente)
+python -m fakebr.bertimbau --preprocessamento neutro --nome bertimbau_neutro
 python -m fakebr.llm            # Exp. 4: Qwen2.5-7B-Instruct 4 bits, zero e few-shot        (GPU)
-python -m fakebr.relatorio      # Seções 5 e 6: tabelas, McNemar, figuras e análise de erros
+python -m fakebr.llm --preprocessamento neutro --nome qwen7b_neutro
+python -m fakebr.relatorio      # Seções 5 e 6: tabelas, McNemar, robustez, custo, figuras e erros
 python -m pytest tests          # testes da biblioteca e dos experimentos
 ```
 
 Cada comando aceita `--help`. Os experimentos clássicos podem ser rodados um a um
-(`python -m fakebr.classicos --listar`).
+(`python -m fakebr.classicos --listar`). O `--modelo` do LLM aceita um id do HuggingFace ou uma pasta
+local; se o download pelo `hf` travar (protocolo Xet), use `HF_HUB_DISABLE_XET=1` ou baixe os
+`.safetensors` com `curl`.
 
 ## Protocolo, em resumo
 
 - **Corpus**: versão `size_normalized_texts` (o tamanho do texto sozinho dá 94% de acurácia nos textos completos).
+- **Atalhos controlados**: a normalização trunca a verdadeira no meio da frase (70% das falsas terminam com
+  pontuação, 7% das verdadeiras); 4 marcas de formatação sozinhas dão 83%. O pré-processamento `neutro`
+  ([classicos.py](fakebr/classicos.py), `_neutro`) padroniza aspas, desfaz ". .", corta todo texto na última
+  frase completa e tira a pontuação final; cada modelo sensível à pontuação é avaliado com e sem ele.
 - **Partição**: 70/15/15 sorteada por **par** (falsa e verdadeira do mesmo assunto ficam juntas): 5.040/1.080/1.080.
 - **Seleção de hiperparâmetros**: GridSearchCV com GroupKFold(5) por par no treino; a validação escolhe o ponto de
   parada do BERTimbau e o limiar do LLM; o teste é usado uma vez.

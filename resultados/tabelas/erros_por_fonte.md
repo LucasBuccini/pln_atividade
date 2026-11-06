@@ -1,6 +1,6 @@
 Revocação da classe falsa conforme a fonte da notícia falsa.
 
-| origem             | tfidf_nb   | tfidf_svm   | svm_caracteres   |   n |
-|:-------------------|:-----------|:------------|:-----------------|----:|
-| diariodobrasil.org | 88,9       | 94,2        | 96,0             | 496 |
-| outras fontes      | 56,8       | 63,6        | 59,1             |  44 |
+| origem             | tfidf_nb   | tfidf_svm   | svm_caracteres   | bertimbau_congelado   | e5_congelado   | bertimbau_s42   | qwen7b_k0_calibrado   | qwen7b_k4_calibrado   | svm_caracteres_neutro   | bertimbau_congelado_neutro   | bertimbau_neutro_s42   | qwen7b_neutro_k0_calibrado   |   n |
+|:-------------------|:-----------|:------------|:-----------------|:----------------------|:---------------|:----------------|:----------------------|:----------------------|:------------------------|:-----------------------------|:-----------------------|:-----------------------------|----:|
+| diariodobrasil.org | 88,9       | 94,2        | 96,0             | 96,6                  | 93,3           | 100,0           | 77,8                  | 77,0                  | 95,0                    | 94,8                         | 98,4                   | 74,4                         | 496 |
+| outras fontes      | 56,8       | 63,6        | 59,1             | 75,0                  | 63,6           | 93,2            | 72,7                  | 65,9                  | 65,9                    | 72,7                         | 97,7                   | 65,9                         |  44 |

@@ -11,3 +11,6 @@ dados/cache/
 # tabelas e figuras são versionadas para o artigo ser reproduzível sem retreinar.
 resultados/modelos/
 resultados/logs/
+
+# Gerado por `python artigo/montar_overleaf.py`
+artigo/entrega_overleaf.zip

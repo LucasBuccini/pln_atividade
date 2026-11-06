@@ -11,76 +11,77 @@
     "melhores_hiperparametros": {
       "logisticregression__C": 0.03
     },
-    "cv_acuracia_media": 0.96369,
-    "cv_acuracia_dp": 0.006262,
-    "tempo_busca_s": 2.26,
-    "atualizado_em": "2026-10-27 11:09:12"
+    "cv_acuracia_media": 0.944643,
+    "cv_acuracia_dp": 0.003224,
+    "tempo_busca_s": 2.63,
+    "atualizado_em": "2026-11-03 10:07:37",
+    "tempo_codificacao_s": 69.91
   },
   "validacao": {
     "n": 1080,
-    "acuracia": 0.961111,
-    "precisao_fake": 0.962825,
-    "revocacao_fake": 0.959259,
-    "f1_fake": 0.961039,
-    "f1_macro": 0.961111,
-    "mcc": 0.922229,
+    "acuracia": 0.950926,
+    "precisao_fake": 0.95514,
+    "revocacao_fake": 0.946296,
+    "f1_fake": 0.950698,
+    "f1_macro": 0.950925,
+    "mcc": 0.901891,
     "matriz_confusao": [
       [
-        520,
-        20
+        516,
+        24
       ],
       [
-        22,
-        518
+        29,
+        511
       ]
     ],
-    "roc_auc": 0.992953,
+    "roc_auc": 0.989376,
     "ic95": {
       "acuracia": [
-        0.949074,
-        0.972222
+        0.937963,
+        0.962963
       ],
       "f1_fake": [
-        0.948932,
-        0.972222
+        0.937618,
+        0.962963
       ],
       "f1_macro": [
-        0.949072,
-        0.972222
+        0.937957,
+        0.962963
       ]
     }
   },
   "teste": {
     "n": 1080,
-    "acuracia": 0.949074,
-    "precisao_fake": 0.948244,
-    "revocacao_fake": 0.95,
-    "f1_fake": 0.949121,
-    "f1_macro": 0.949074,
-    "mcc": 0.89815,
+    "acuracia": 0.934259,
+    "precisao_fake": 0.938318,
+    "revocacao_fake": 0.92963,
+    "f1_fake": 0.933953,
+    "f1_macro": 0.934258,
+    "mcc": 0.868556,
     "matriz_confusao": [
       [
-        512,
-        28
+        507,
+        33
       ],
       [
-        27,
-        513
+        38,
+        502
       ]
     ],
-    "roc_auc": 0.990302,
+    "roc_auc": 0.98154,
     "ic95": {
       "acuracia": [
-        0.936088,
-        0.962037
+        0.918519,
+        0.949074
       ],
       "f1_fake": [
-        0.935574,
-        0.962144
+        0.918366,
+        0.949215
       ],
       "f1_macro": [
-        0.936069,
-        0.962037
+        0.918518,
+        0.949074
       ]
     }
   }

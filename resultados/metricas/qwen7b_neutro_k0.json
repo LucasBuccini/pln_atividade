@@ -1,0 +1,92 @@
+{
+  "modelo": "qwen7b_neutro_k0",
+  "info": {
+    "familia": "4. LLM (aprendizado no contexto)",
+    "modelo_hf": "C:/Users/202401005185/modelos/Qwen2.5-7B-Instruct",
+    "k": 0,
+    "quantizacao": "nf4-4bit",
+    "versao_corpus": "normalizado",
+    "preprocessamento": "neutro",
+    "max_palavras": 400,
+    "max_palavras_exemplo": 150,
+    "amostra_pares": "todos",
+    "instrucao": "Você é um checador de fatos especializado em notícias brasileiras. Sua tarefa é classificar uma notícia como FALSA (desinformação, boato, conteúdo fabricado ou distorcido) ou VERDADEIRA (jornalismo factual publicado por veículo confiável). Considere o conteúdo, o estilo e a plausibilidade. Responda com uma única palavra: FALSA ou VERDADEIRA.",
+    "exemplos": [],
+    "tempo_inferencia_s": {
+      "validacao": 225.67,
+      "teste": 232.72
+    },
+    "limiar_validacao": -8.1875,
+    "descricao": "Qwen2.5-7B-Instruct zero-shot, artefatos neutralizados",
+    "regra": "limiar 0",
+    "atualizado_em": "2026-11-06 10:03:28"
+  },
+  "validacao": {
+    "n": 1080,
+    "acuracia": 0.707407,
+    "precisao_fake": 0.9,
+    "revocacao_fake": 0.466667,
+    "f1_fake": 0.614634,
+    "f1_macro": 0.689407,
+    "mcc": 0.473286,
+    "matriz_confusao": [
+      [
+        512,
+        28
+      ],
+      [
+        288,
+        252
+      ]
+    ],
+    "roc_auc": 0.859338,
+    "ic95": {
+      "acuracia": [
+        0.685185,
+        0.72963
+      ],
+      "f1_fake": [
+        0.574307,
+        0.652331
+      ],
+      "f1_macro": [
+        0.662151,
+        0.715584
+      ]
+    }
+  },
+  "teste": {
+    "n": 1080,
+    "acuracia": 0.707407,
+    "precisao_fake": 0.902878,
+    "revocacao_fake": 0.464815,
+    "f1_fake": 0.613692,
+    "f1_macro": 0.689111,
+    "mcc": 0.474393,
+    "matriz_confusao": [
+      [
+        513,
+        27
+      ],
+      [
+        289,
+        251
+      ]
+    ],
+    "roc_auc": 0.858729,
+    "ic95": {
+      "acuracia": [
+        0.686111,
+        0.730556
+      ],
+      "f1_fake": [
+        0.575794,
+        0.652432
+      ],
+      "f1_macro": [
+        0.663432,
+        0.71543
+      ]
+    }
+  }
+}
