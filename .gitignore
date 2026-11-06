@@ -14,3 +14,4 @@ resultados/logs/
 
 # Gerado por `python artigo/montar_overleaf.py`
 artigo/entrega_overleaf.zip
+artigo/entrega_overleaf/
